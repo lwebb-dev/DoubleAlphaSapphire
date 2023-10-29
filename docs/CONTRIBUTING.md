@@ -1,6 +1,6 @@
 # Contributing To The Project
 
-At the time of writing this, the DoubleAlphaSapphire App repository is private. Which means if you are reading this, you have been given explicit permission to do so.
+At the time of writing this, the DoubleAlphaSapphire App repository is private. Which means if you are able to read this, you have been given explicit permission to do so.
 
 
 ## Pull Requests
@@ -9,8 +9,8 @@ Pull Requests are welcome, just ping me in Discord and I'll get around to Code R
 
 General Code Contribution Guidelines are as follows:
 
-1. Write readable C# code that doesn't make me want to gouge my eyes out. see [CONVENTIONS](docs/CONVENTIONS.md) for details.
-2. Follow Domain Driven Design (DDD). Put simply, Frontend and API Controller code goes in App project, Service Classes and overall Business Logic goes in the Domain class, Data Models and Database Access stuff goes in the Data project.
+1. Write readable C# code that doesn't make me want to gouge my eyes out. See [CONVENTIONS](docs/CONVENTIONS.md) for details.
+2. Follow Domain Driven Design (DDD). Put simply, Frontend and API Controller code goes in App project, Service Classes and overall Business Logic goes in the Domain project, Data Models and Database Access stuff goes in the Data project.
 3. Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for your commit messages.
 4. Run and Test your changes locally before opening a PR.
 5. Delete your branch once it has been merged to main.
