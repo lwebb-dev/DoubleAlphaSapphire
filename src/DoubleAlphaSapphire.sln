@@ -5,9 +5,19 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoubleAlphaSapphire.App", "DoubleAlphaSapphire.App\DoubleAlphaSapphire.App.csproj", "{F00E4415-92D9-4421-A4CD-CADE7E9FAEA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleAlphaSapphire.Domain", "DoubleAlphaSapphire.Domain\DoubleAlphaSapphire.Domain.csproj", "{144C44B9-67A3-4F35-ABE0-2ACE5773A01D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoubleAlphaSapphire.Domain", "DoubleAlphaSapphire.Domain\DoubleAlphaSapphire.Domain.csproj", "{144C44B9-67A3-4F35-ABE0-2ACE5773A01D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleAlphaSapphire.Data", "DoubleAlphaSapphire.Data\DoubleAlphaSapphire.Data.csproj", "{2F69E0E2-9F36-43EC-99B9-62E8D6862898}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoubleAlphaSapphire.Data", "DoubleAlphaSapphire.Data\DoubleAlphaSapphire.Data.csproj", "{2F69E0E2-9F36-43EC-99B9-62E8D6862898}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{93C87955-7C26-4510-9488-0F36185F9ED6}"
+	ProjectSection(SolutionItems) = preProject
+		..\.dockerignore = ..\.dockerignore
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+		..\docker-compose.yaml = ..\docker-compose.yaml
+		..\LICENSE.txt = ..\LICENSE.txt
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
