@@ -1,8 +1,5 @@
 # Contributing To The Project
 
-At the time of writing this, the DoubleAlphaSapphire App repository is private. Which means if you are able to read this, you have been given explicit permission to do so.
-
-
 ## Pull Requests
 
 Pull Requests are welcome, just ping me in Discord and I'll get around to Code Reviewing it. For the time being all PRs are to be reviewed by me alone. 
