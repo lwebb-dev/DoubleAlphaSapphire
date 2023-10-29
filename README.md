@@ -22,7 +22,3 @@ dotnet user-secrets set "UserSecretsUtility:POSTGRES_CONNECTION_STRING" "<YOUR_C
 4. Build & Run the DoubleAlphaSapphire.App project. Migrations wwill be run against your PostgreSQL database automatically.
 
 The App should now be running and available at https://localhost:7079.
-
-## PR Test
-
-Delete Me!
