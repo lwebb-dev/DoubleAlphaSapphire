@@ -6,7 +6,7 @@ Additionally here are some personal preferences I've developed over the last 5 y
 
 
 ## C# / .NET
----
+
 
 Comments are encouraged except for when they are rendered reduntant by self documenting code:
 ```
@@ -155,11 +155,11 @@ if (conditionFailed)
 I'm sure there's more. I'll add them as they come to me.
 
 ## PostgreSQL
----
+
 Since we use EntityFramework to handle all our queries, indexing, and ORM, the only thing th mention here is to use `lower_case_underscore` format for table and column names.
 
 Date and Timestamp columns should always store UTC data, and the column name should reflect this. Example: `created_on_utc`.
 
 ## Svelte (HTML/CSS/Javascript)
----
+
 // TODO
