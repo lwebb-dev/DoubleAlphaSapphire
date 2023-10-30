@@ -7,7 +7,18 @@ namespace DoubleAlphaSapphire.Domain.Services.Interfaces
 {
     public interface ITrainerService
     {
+        /// <summary>
+        /// Returns every Trainer in the database.
+        /// TODO: This should utilize pagination at some point.
+        /// </summary>
+        /// <returns>A collection of all Trainers in the database.</returns>
         Task<IEnumerable<Trainer>> GetTrainersAsync();
+
+        /// <summary>
+        /// Returns a single trainer using provided TrainerId.
+        /// </summary>
+        /// <param name="trainerId">Primary key for the trainer row in the database.</param>
+        /// <returns>A single NULLABLE Trainer object.</returns>
         Task<Trainer> GetTrainerByIdAsync(Guid trainerId);
 
         /// <summary>
