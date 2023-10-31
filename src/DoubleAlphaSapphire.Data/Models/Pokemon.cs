@@ -14,6 +14,5 @@ namespace DoubleAlphaSapphire.Data
         [MaxLength(50)]
         [Column("pokemon_name")]
         public string PokemonName { get; set; }
-
     }
 }

@@ -56,7 +56,7 @@ namespace DoubleAlphaSapphireApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Trainer>>> CreateTrainersAsync([FromBody] string[] trainerNames)
+        public async Task<ActionResult<IEnumerable<int>>> CreateTrainersAsync([FromBody] string[] trainerNames)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace DoubleAlphaSapphireApp.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult<IEnumerable<Trainer>>> DeleteTrainersByIdsAsync([FromBody] string[] trainerIds)
+        public async Task<ActionResult<IEnumerable<int>>> DeleteTrainersByIdsAsync([FromBody] string[] trainerIds)
         {
             var parsedTrainerIds = new List<Guid>();
 

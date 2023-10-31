@@ -52,6 +52,7 @@ namespace DoubleAlphaSapphire.App
 
             builder.Services.AddScoped<ITrainerService, TrainerService>();
             builder.Services.AddScoped<IPlayerService, PlayerService>();
+            builder.Services.AddScoped<IPokemonService, PokemonService>();
 
             WebApplication app = builder.Build();
 

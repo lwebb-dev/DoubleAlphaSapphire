@@ -14,12 +14,12 @@ namespace DoubleAlphaSapphire.App.Controllers
     public class PlayersController : ControllerBase
     {
         private readonly ILogger<PlayersController> logger;
-        private readonly IPlayerService PlayerService;
+        private readonly IPlayerService playerService;
 
-        public PlayersController(ILogger<PlayersController> logger, IPlayerService PlayerService)
+        public PlayersController(ILogger<PlayersController> logger, IPlayerService playerService)
         {
             this.logger = logger;
-            this.PlayerService = PlayerService;
+            this.playerService = playerService;
         }
 
         [HttpGet]
@@ -27,16 +27,16 @@ namespace DoubleAlphaSapphire.App.Controllers
         {
             try
             {
-                return Ok(await this.PlayerService.GetPlayersAsync());
+                return Ok(await this.playerService.GetPlayersAsync());
             }
             catch (Exception ex)
             {
-                this.logger.LogError("GET ~/api/Players/ threw an Exception: {Message}", ex.Message);
+                this.logger.LogError("GET ~/api/players/ threw an Exception: {Message}", ex.Message);
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
 
-        [HttpGet("{PlayerIdString}")]
+        [HttpGet("{playerIdString}")]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayersAsync(string playerIdString)
         {
             if (!Guid.TryParse(playerIdString, out Guid playerId))
@@ -46,31 +46,31 @@ namespace DoubleAlphaSapphire.App.Controllers
 
             try
             {
-                return Ok(await this.PlayerService.GetPlayerByIdAsync(playerId));
+                return Ok(await this.playerService.GetPlayerByIdAsync(playerId));
             }
             catch (Exception ex)
             {
-                this.logger.LogError("GET ~/api/Players/{playerId} threw an Exception: {Message}", playerId, ex.Message);
+                this.logger.LogError("GET ~/api/players/{playerId} threw an Exception: {Message}", playerId, ex.Message);
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Player>>> CreatePlayersAsync([FromBody] string[] playerNames)
+        public async Task<ActionResult<IEnumerable<int>>> CreatePlayersAsync([FromBody] string[] playerNames)
         {
             try
             {
-                return Ok(await this.PlayerService.CreatePlayersAsync(playerNames));
+                return Ok(await this.playerService.CreatePlayersAsync(playerNames));
             }
             catch (Exception ex)
             {
-                this.logger.LogError("POST ~/api/Players/ threw an Exception: {Message}", ex.Message);
+                this.logger.LogError("POST ~/api/players/ threw an Exception: {Message}", ex.Message);
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
 
         [HttpDelete]
-        public async Task<ActionResult<IEnumerable<Player>>> DeletePlayersByIdsAsync([FromBody] string[] playerIds)
+        public async Task<ActionResult<IEnumerable<int>>> DeletePlayersByIdsAsync([FromBody] string[] playerIds)
         {
             var parsedPlayerIds = new List<Guid>();
 
@@ -86,7 +86,7 @@ namespace DoubleAlphaSapphire.App.Controllers
 
             try
             {
-                return Ok(await this.PlayerService.DeletePlayersByIdsAsync(parsedPlayerIds));
+                return Ok(await this.playerService.DeletePlayersByIdsAsync(parsedPlayerIds));
             }
             catch (Exception ex)
             {
@@ -94,6 +94,5 @@ namespace DoubleAlphaSapphire.App.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
-
     }
 }

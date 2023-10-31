@@ -19,7 +19,7 @@ namespace DoubleAlphaSapphire.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pokemon>()
-                .HasNoKey();
+                .HasKey(e => e.DexId);
         }
     }
 }

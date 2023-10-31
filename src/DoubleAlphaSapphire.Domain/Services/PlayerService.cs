@@ -20,23 +20,23 @@ namespace DoubleAlphaSapphire.Domain.Services
             this.dbContext = dbContext;
         }
 
-        public async Task<int> CreatePlayersAsync(IEnumerable<string> PlayerNames)
+        public async Task<int> CreatePlayersAsync(IEnumerable<string> playerNames)
         {
             int result = 0;
-            var Players = new List<Player>();
+            var players = new List<Player>();
 
-            foreach (string PlayerName in PlayerNames)
+            foreach (string playerName in playerNames)
             {
-                Players.Add(new Player
+                players.Add(new Player
                 {
                     PlayerId = Guid.NewGuid(),
-                    PlayerName = PlayerName
+                    PlayerName = playerName
                 });
             }
 
             try
             {
-                await this.dbContext.Players.AddRangeAsync(Players);
+                await this.dbContext.Players.AddRangeAsync(players);
                 result = await this.dbContext.SaveChangesAsync();
 
                 if (result <= 0)
@@ -52,7 +52,7 @@ namespace DoubleAlphaSapphire.Domain.Services
             return result;
         }
 
-        public async Task<int> DeletePlayersByIdsAsync(IEnumerable<Guid> PlayerIds)
+        public async Task<int> DeletePlayersByIdsAsync(IEnumerable<Guid> playerIds)
         {
             int result = 0;
 
@@ -60,7 +60,7 @@ namespace DoubleAlphaSapphire.Domain.Services
             {
                 IEnumerable<Player> removeSet = this.dbContext
                     .Players
-                    .Where(x => PlayerIds.Contains(x.PlayerId));
+                    .Where(x => playerIds.Contains(x.PlayerId));
 
                 this.dbContext
                     .Players
