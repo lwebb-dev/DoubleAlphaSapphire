@@ -46,7 +46,7 @@ namespace DoubleAlphaSapphire.Domain.Services
             }
             catch (Exception ex)
             {
-                this.logger.LogError($"CreateTrainersAsync failed to create Trainers: {ex.Message}");
+                this.logger.LogError("CreateTrainersAsync failed to create Trainers: {Message}", ex.Message);
             }
 
             return result;
@@ -75,7 +75,7 @@ namespace DoubleAlphaSapphire.Domain.Services
             }
             catch (Exception ex)
             {
-                this.logger.LogError($"DeleteTrainersByIdsAsync failed to delete Trainers: {ex.Message}");
+                this.logger.LogError("DeleteTrainersByIdsAsync failed to delete Trainers: {Message}", ex.Message);
             }
 
             return result;
@@ -89,7 +89,7 @@ namespace DoubleAlphaSapphire.Domain.Services
 
             if (result == null)
             {
-                this.logger.LogWarning($"GetTrainerByIdAsync using trainerId {trainerId} returned null.");
+                this.logger.LogWarning("GetTrainerByIdAsync using trainerId {trainerId} returned null.", trainerId);
             }
 
             return result;

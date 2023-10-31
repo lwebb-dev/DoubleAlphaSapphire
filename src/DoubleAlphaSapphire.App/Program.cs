@@ -51,6 +51,7 @@ namespace DoubleAlphaSapphire.App
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<ITrainerService, TrainerService>();
+            builder.Services.AddScoped<IPlayerService, PlayerService>();
 
             WebApplication app = builder.Build();
 

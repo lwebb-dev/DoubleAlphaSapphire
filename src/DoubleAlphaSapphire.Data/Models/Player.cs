@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DoubleAlphaSapphireApp.Data.Models
+namespace DoubleAlphaSapphire.Data
 {
     [Table("player")]
     public class Player

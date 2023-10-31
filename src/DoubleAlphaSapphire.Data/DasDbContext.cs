@@ -1,5 +1,4 @@
-﻿using DoubleAlphaSapphireApp.Data.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DoubleAlphaSapphire.Data
 {

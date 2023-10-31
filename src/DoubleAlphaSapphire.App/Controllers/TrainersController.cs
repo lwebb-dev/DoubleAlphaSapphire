@@ -13,7 +13,7 @@ namespace DoubleAlphaSapphireApp.Controllers
     [ApiController]
     public class TrainersController : ControllerBase
     {
-        private ILogger<TrainersController> logger;
+        private readonly ILogger<TrainersController> logger;
         private readonly ITrainerService trainerService;
 
         public TrainersController(ILogger<TrainersController> logger, ITrainerService trainerService)
@@ -31,7 +31,7 @@ namespace DoubleAlphaSapphireApp.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError($"GET ~/api/trainers/ threw an Exception: {ex.Message}");
+                this.logger.LogError("GET ~/api/trainers/ threw an Exception: {Message}", ex.Message);
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
@@ -50,7 +50,7 @@ namespace DoubleAlphaSapphireApp.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError($"GET ~/api/trainers/{trainerId} threw an Exception: {ex.Message}");
+                this.logger.LogError("GET ~/api/trainers/{trainerId} threw an Exception: {Message}", trainerId, ex.Message);
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
@@ -64,7 +64,7 @@ namespace DoubleAlphaSapphireApp.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError($"POST ~/api/trainers/ threw an Exception: {ex.Message}");
+                this.logger.LogError("POST ~/api/trainers/ threw an Exception: {Message}", ex.Message);
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
@@ -90,10 +90,9 @@ namespace DoubleAlphaSapphireApp.Controllers
             }
             catch (Exception ex)
             {
-                this.logger.LogError($"DELETE ~/api/trainers/ threw an Exception: {ex.Message}");
+                this.logger.LogError("DELETE ~/api/trainers/ threw an Exception: {Message}", ex.Message);
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
-
     }
 }
