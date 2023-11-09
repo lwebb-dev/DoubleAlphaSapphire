@@ -1,18 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 
 namespace DoubleAlphaSapphire.Data
 {
-    [Table("pokemon")]
     public class Pokemon
     {
-        [Required]
-        [Column("dex_id")]
         public int DexId { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        [Column("pokemon_name")]
         public string PokemonName { get; set; }
+
+        // Relational Data
+        public List<BattlePokemon> BattlePokemon { get; set; }
     }
 }

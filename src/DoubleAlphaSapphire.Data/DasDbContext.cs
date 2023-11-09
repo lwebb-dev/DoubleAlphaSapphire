@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DoubleAlphaSapphire.Data.EntityBuilders;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace DoubleAlphaSapphire.Data
 {
     public class DasDbContext : DbContext
     {
+        private IList<IEntityBuilder> entityBuilders;
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Pokemon> Pokemon { get; set; }
@@ -13,13 +16,22 @@ namespace DoubleAlphaSapphire.Data
         public DasDbContext(DbContextOptions<DasDbContext> options)
             : base(options)
         {
-
+            this.entityBuilders = new List<IEntityBuilder>
+            {
+                new TrainerEntityBuilder(),
+                new PlayerEntityBuilder(),
+                new PokemonEntityBuilder(),
+                new BattleEntityBuilder(),
+                new BattlePokemonEntityBuilder()
+            };
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Pokemon>()
-                .HasKey(e => e.DexId);
+            foreach (IEntityBuilder entityBuilder in this.entityBuilders)
+            {
+                entityBuilder.Build(modelBuilder);
+            }
         }
     }
 }

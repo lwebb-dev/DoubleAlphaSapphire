@@ -1,27 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DoubleAlphaSapphire.Data
 {
-    [Table("battles")]
     public class Battle
     {
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("battle_id")]
         public Guid BattleId { get; set; }
-
-        [Required]
-        [Column("trainer_id")]
         public Guid TrainerId { get; set; }
-
-        [Required]
-        [Column("player_id")]
         public Guid PlayerId { get; set; }
-
-        [Required]
-        [Column("player_name")]
         public int AttemptNumber { get; set; }
+
+        // Relational Data
+        public Trainer Trainer { get; set; }
+        public Player Player { get; set; }
+        public List<BattlePokemon> BattlePokemon { get; set; }
     }
 }

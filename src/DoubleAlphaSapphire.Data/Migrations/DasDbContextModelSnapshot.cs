@@ -27,11 +27,12 @@ namespace DoubleAlphaSapphire.Data.Migrations
                     b.Property<Guid>("BattleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("battle_id");
+                        .HasColumnName("battle_id")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<int>("AttemptNumber")
                         .HasColumnType("integer")
-                        .HasColumnName("player_name");
+                        .HasColumnName("attempt_number");
 
                     b.Property<Guid>("PlayerId")
                         .HasColumnType("uuid")
@@ -43,7 +44,11 @@ namespace DoubleAlphaSapphire.Data.Migrations
 
                     b.HasKey("BattleId");
 
-                    b.ToTable("battles");
+                    b.HasIndex("PlayerId");
+
+                    b.HasIndex("TrainerId");
+
+                    b.ToTable("battles", (string)null);
                 });
 
             modelBuilder.Entity("DoubleAlphaSapphire.Data.BattlePokemon", b =>
@@ -51,7 +56,8 @@ namespace DoubleAlphaSapphire.Data.Migrations
                     b.Property<Guid>("BattlePokemonId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("battle_pokemon_id");
+                        .HasColumnName("battle_pokemon_id")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<Guid>("BattleId")
                         .HasColumnType("uuid")
@@ -71,7 +77,11 @@ namespace DoubleAlphaSapphire.Data.Migrations
 
                     b.HasKey("BattlePokemonId");
 
-                    b.ToTable("battle_pokemon");
+                    b.HasIndex("BattleId");
+
+                    b.HasIndex("DexId");
+
+                    b.ToTable("battle_pokemon", (string)null);
                 });
 
             modelBuilder.Entity("DoubleAlphaSapphire.Data.Player", b =>
@@ -79,17 +89,18 @@ namespace DoubleAlphaSapphire.Data.Migrations
                     b.Property<Guid>("PlayerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("player_id");
+                        .HasColumnName("player_id")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<string>("PlayerName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
+                        .HasColumnType("text")
                         .HasColumnName("player_name");
 
                     b.HasKey("PlayerId");
 
-                    b.ToTable("player");
+                    b.ToTable("players", (string)null);
                 });
 
             modelBuilder.Entity("DoubleAlphaSapphire.Data.Pokemon", b =>
@@ -104,12 +115,12 @@ namespace DoubleAlphaSapphire.Data.Migrations
                     b.Property<string>("PokemonName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
+                        .HasColumnType("text")
                         .HasColumnName("pokemon_name");
 
                     b.HasKey("DexId");
 
-                    b.ToTable("pokemon");
+                    b.ToTable("pokemon", (string)null);
                 });
 
             modelBuilder.Entity("DoubleAlphaSapphire.Data.Trainer", b =>
@@ -117,17 +128,76 @@ namespace DoubleAlphaSapphire.Data.Migrations
                     b.Property<Guid>("TrainerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("trainer_id");
+                        .HasColumnName("trainer_id")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<string>("TrainerName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
+                        .HasColumnType("text")
                         .HasColumnName("trainer_name");
 
                     b.HasKey("TrainerId");
 
-                    b.ToTable("trainers");
+                    b.ToTable("trainers", (string)null);
+                });
+
+            modelBuilder.Entity("DoubleAlphaSapphire.Data.Battle", b =>
+                {
+                    b.HasOne("DoubleAlphaSapphire.Data.Player", "Player")
+                        .WithMany("Battles")
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DoubleAlphaSapphire.Data.Trainer", "Trainer")
+                        .WithMany("Battles")
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Player");
+
+                    b.Navigation("Trainer");
+                });
+
+            modelBuilder.Entity("DoubleAlphaSapphire.Data.BattlePokemon", b =>
+                {
+                    b.HasOne("DoubleAlphaSapphire.Data.Battle", "Battle")
+                        .WithMany("BattlePokemon")
+                        .HasForeignKey("BattleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DoubleAlphaSapphire.Data.Pokemon", "Pokemon")
+                        .WithMany("BattlePokemon")
+                        .HasForeignKey("DexId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Battle");
+
+                    b.Navigation("Pokemon");
+                });
+
+            modelBuilder.Entity("DoubleAlphaSapphire.Data.Battle", b =>
+                {
+                    b.Navigation("BattlePokemon");
+                });
+
+            modelBuilder.Entity("DoubleAlphaSapphire.Data.Player", b =>
+                {
+                    b.Navigation("Battles");
+                });
+
+            modelBuilder.Entity("DoubleAlphaSapphire.Data.Pokemon", b =>
+                {
+                    b.Navigation("BattlePokemon");
+                });
+
+            modelBuilder.Entity("DoubleAlphaSapphire.Data.Trainer", b =>
+                {
+                    b.Navigation("Battles");
                 });
 #pragma warning restore 612, 618
         }
